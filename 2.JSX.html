@@ -1,0 +1,31 @@
+<html>
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+window.onload = () => {
+//jsbin
+//https://babeljs.io/
+//var div = React.createElement("div", {id:'dv',name:'test'}, "Hello world");
+//ReactDOM.render(div, document.getElementById('root'));
+
+//const dv = <div>Hello, world!</div>;
+//const dv = <div className='test'>Hello, world!</div>;
+//const dv = (<div className='test'>Hello, world!</div>);
+var name = 'Kent';
+//const dv = (<div className='test'>Hello, {name}!</div>);
+const dv = (age) => <div className='test'>Hello, {age}!</div>;
+ReactDOM.render(dv(18), document.getElementById('root'));
+
+var items = ['one','two'];
+//const ul = <ul><li>one</li><li>two</li></ul>;
+const ul = (list) => <ul>{list.map((el,i)=><li key={i} >{el}</li>)}</ul>;
+ReactDOM.render(ul(items), document.getElementById('root2'));
+
+}
+</script>
+<body>
+<div id='root'></div>
+<div id='root2'></div>
+</body>
+</html>

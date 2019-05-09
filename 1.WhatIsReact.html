@@ -1,0 +1,57 @@
+<html>
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom-factories@1.0.0/index.js"></script>
+<script>
+window.onload = () => {
+var div = React.createElement("div", {id:'dv',name:'test'}, "Hello world");
+ReactDOM.render(div, document.getElementById('root'));
+
+var ul = React.createElement(
+"ul",
+null,
+React.createElement("li", null, "first"),
+React.createElement("li", null, "second")
+)
+ReactDOM.render(ul, document.getElementById('root'));
+
+var items = ["third","fourth"];
+var ul2 = React.createElement("ul", null, items.map((el, i) => React.createElement("li", {key:i}, el)));
+ReactDOM.render(ul2, document.getElementById('root'));
+
+class UL extends React.Component {
+  renderListItem(el, i) {
+    return React.createElement("li", { key: i }, el)
+  }
+  render() {
+    return React.createElement("ul", null, items.map(this.renderListItem));
+  }
+}
+var ul3 = new UL().render();
+ReactDOM.render(ul3, document.getElementById('root2'));
+
+const ul4 = item =>
+React.createElement("ul", null,
+item.map((el, i) => React.createElement("li", { key: i }, el)))
+ReactDOM.render(ul4(items), document.getElementById('root3'));
+
+//factiries
+var dv = ReactDOMFactories.div(null, "this is new div");
+ReactDOM.render(dv, document.getElementById('root'));
+
+var ul5 = ReactDOMFactories.ul(null,
+items.map((el, key) =>
+ReactDOMFactories.li({key}, el)));
+ReactDOM.render(ul5, document.getElementById('root4'));
+
+}
+</script>
+<body>
+
+<div id='root'></div>
+<div id='root2'></div>
+<div id='root3'></div>
+<div id='root4'></div>
+
+</body>
+</html>
