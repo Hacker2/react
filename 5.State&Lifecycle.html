@@ -1,0 +1,72 @@
+<html>
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+window.onload = () => {
+
+const Div = <div>Hello, world!</div>;
+ReactDOM.render(Div, document.getElementById('root'));
+
+class Hello extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {name: 'Kent'};
+    console.log('constructor');
+  }
+  componentWillMount() {
+    console.log('will mount');
+    //this.setState({name: 'Mike'});
+    this.setState(() => {name: 'Mike'});
+  }
+  componentDidMount() {
+    console.log('mount');
+    this.setState({name: 'Max', count: 0});
+  }
+  changeState() {
+    console.log('change state');
+    this.setState({count: ++this.state.count});
+  }
+  render() {
+    console.log('render');
+    return <h1 onClick={() => this.changeState()}>Hello {this.state.name} {this.state.count}</h1>;
+    //return <h1 onClick={() => this.componentWillReceiveProps({count: ++this.state.count})}>Hello {this.state.name} {this.state.count}</h1>;
+  }
+  componentWillUnmount() {
+    console.log('umount');
+  }
+
+  /*componentWillReceiveProps(nextProps) {
+    console.log('componentWillReceiveProps');
+    console.log(nextProps);
+    this.setState(nextProps);
+  }*/
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('shouldComponentUpdate');
+    console.log(nextProps);
+    console.log(nextState);
+    return true;
+  }
+  componentWillUpdate(nextProps, nextState) {
+    console.log('componentWillUpdate');
+    console.log(nextProps);
+    console.log(nextState);
+  }
+  componentDidUpdate(nextProps, nextState) {
+    console.log('componentDidUpdate');
+    console.log(nextProps);
+    console.log(nextState);
+  }
+}
+ReactDOM.render(<Hello />, document.getElementById('root2'));
+//ReactDOM.unmountComponentAtNode(document.getElementById('root2'));
+
+}
+</script>
+<body>
+<div id='root'></div>
+<div id='root2'></div>
+<div id='root3'></div>
+<div id='root4'></div>
+</body>
+</html>
