@@ -36,6 +36,31 @@ const UL = (props) => <ul>{props.list.map((el,i) => <LI key={i} value={el} />)}<
 var arr = ['one', 'two']
 ReactDOM.render(<UL list={arr} />, document.getElementById('root4'));
 
+class Hello extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {name: 'Kent'};
+  }
+  componentWillMount() {
+    console.log('will mount');
+    this.setState({name: 'Mike'});
+  }
+  componentDidMount() {
+    console.log('mount');
+    this.setState({name: 'Max', count: 0});
+  }
+  changeState() {
+    this.setState({count: ++this.state.count});
+  }
+  componentWillUnmount() {
+    console.log('umount');
+  }
+  render() {
+    return <h1 onClick={() => this.changeState()}>Hello {this.state.name} {this.state.count}</h1>;
+  }
+}
+ReactDOM.render(<Hello />, document.getElementById('root2'));
+
 }
 </script>
 <body>
