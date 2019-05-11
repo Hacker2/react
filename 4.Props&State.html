@@ -40,6 +40,7 @@ class Hello extends React.Component {
   constructor(props) {
     super(props);
     this.state = {name: 'Kent'};
+    console.log('constructor');
   }
   componentWillMount() {
     console.log('will mount');
@@ -52,11 +53,12 @@ class Hello extends React.Component {
   changeState() {
     this.setState({count: ++this.state.count});
   }
+  render() {
+    console.log('render');
+    return <h1 onClick={() => this.changeState()}>Hello {this.state.name} {this.state.count}</h1>;
+  }
   componentWillUnmount() {
     console.log('umount');
-  }
-  render() {
-    return <h1 onClick={() => this.changeState()}>Hello {this.state.name} {this.state.count}</h1>;
   }
 }
 ReactDOM.render(<Hello />, document.getElementById('root2'));
