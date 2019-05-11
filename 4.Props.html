@@ -1,0 +1,47 @@
+<html>
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+window.onload = () => {
+
+//const Div = (props) => <div>Hello, world! {props.name}</div>;
+const Div = ({name = 'test'}) => <div>Hello, world! {name}</div>;
+ReactDOM.render(Div({name:'test'}), document.getElementById('root'));
+ReactDOM.render(<Div name="Sara" />, document.getElementById('root'));
+ReactDOM.render(<Div />, document.getElementById('root'));
+
+class Hello extends React.Component {
+  /*constructor(props) {
+    super(props);
+    this.props = props;
+  }*/
+  static defaultProps = {
+    name: 'hello'
+  }
+  render() {
+    const {name} = this.props
+    //return <h1>Hello, {name}</h1>;
+    return <h1>Hello, {this.props.name}</h1>;
+  }
+}
+ReactDOM.render(new Hello({name:'test', age:'hi'}).render(), document.getElementById('root2'));
+ReactDOM.render(<Hello name="test"/>, document.getElementById('root3'));
+ReactDOM.render(<Hello />, document.getElementById('root3'));
+
+const LI = (props) => <li>{props.value}</li>;
+//const UL = () => <ul><LI value="one"/><LI value="two"/></ul>;
+const UL = (props) => <ul>{props.list.map((el,i) => <LI key={i} value={el} />)}</ul>;
+
+var arr = ['one', 'two']
+ReactDOM.render(<UL list={arr} />, document.getElementById('root4'));
+
+}
+</script>
+<body>
+<div id='root'></div>
+<div id='root2'></div>
+<div id='root3'></div>
+<div id='root4'></div>
+</body>
+</html>
