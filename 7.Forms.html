@@ -39,6 +39,44 @@ class NameForm extends React.Component {
 //do same with textarea and select
 ReactDOM.render(<NameForm />, document.getElementById('root'));
 
+class NameForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {val: '', text: ''};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    console.log('status updated');
+    if(event.target.name == 'val')
+      this.setState({val: event.target.value});
+    if(event.target.name == 'text')
+      this.setState({text: event.target.value});
+  }
+
+  handleSubmit(event) {
+    alert('A name was submitted: ' + this.state.val);
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Name:
+          <input name='val' type="text" value={this.state.val} onChange={this.handleChange} />
+          <textarea name='text' value={this.state.text} onChange={this.handleChange} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
+}
+//do same with textarea and select//then two fields
+ReactDOM.render(<NameForm />, document.getElementById('root'));
+
 
 }
 </script>

@@ -1,0 +1,47 @@
+<html>
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+window.onload = () => {
+
+const Div = <div>Hello, world!</div>;
+ReactDOM.render(Div, document.getElementById('root'));
+
+var state = 0;
+class Hello1 extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {count: 0};
+  }
+  changeState() {
+    this.setState({count: ++state});
+  }
+  render() {
+    return <h1 onClick={() => this.changeState()}>Hello {this.state.count}</h1>;
+  }
+}
+class Hello2 extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {count: 0};
+  }
+  changeState() {
+    this.setState({count: ++state});
+  }
+  render() {
+    return <h1 onClick={() => this.changeState()}>Hello {this.state.count}</h1>;
+  }
+}
+ReactDOM.render(<Hello1 />, document.getElementById('root'));
+ReactDOM.render(<Hello2 />, document.getElementById('root2'));
+
+}
+</script>
+<body>
+<div id='root'></div>
+<div id='root2'></div>
+<div id='root3'></div>
+<div id='root4'></div>
+</body>
+</html>
