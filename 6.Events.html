@@ -1,0 +1,48 @@
+<html>
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+window.onload = () => {
+
+var f = function() {
+  console.log('test');
+}
+
+const Div = <div onClick={f}>Hello, world!</div>;
+ReactDOM.render(Div, document.getElementById('root'));
+
+var Div2 = () => {
+  function handleClick(e) {
+    console.log('The div was clicked.');
+  }
+  return (
+    <div onClick={handleClick}>Hello, world!</div>
+  );
+}
+ReactDOM.render(<Div2 />, document.getElementById('root2'));
+
+class Button extends React.Component {
+  handleClick = (t) => {
+    console.log(t);
+    console.log('this is:', this);
+  }
+  render() {
+    return (
+      null
+      //<div onClick={this.handleClick}>Hello, world!</div>
+      //<div onClick={(e) => this.handleClick('data', e)}>Hello, world!</div>
+    );
+  }
+}
+ReactDOM.render(<Button />, document.getElementById('root3'));
+
+}
+</script>
+<body>
+<div id='root'></div>
+<div id='root2'></div>
+<div id='root3'></div>
+<div id='root4'></div>
+</body>
+</html>
