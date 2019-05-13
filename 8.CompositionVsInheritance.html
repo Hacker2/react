@@ -5,38 +5,30 @@
 <script type="text/babel">
 window.onload = () => {
 
-//function Car(props) { return(<div>Car has, {props.children}</div>)};
-//const Radio = <div>radio</div>;
-//const car = <Car><Radio /></Car>;
-//ReactDOM.render(<Car><Radio></Car>, document.getElementById('root'));
-
-const Car = (props) => <div>{props.children}</div>;
-const BigCar = <b><Car /></b>;
-//const car = <Car><Radio /></Car>;
-ReactDOM.render(<BigCar />, document.getElementById('root'));
-
-function FancyBorder(props) {
+const Radio = (props) => <div>Radio inside {props.children}</div>;
+/*function Radio(props) {
   return (
-    <div className={'FancyBorder FancyBorder-' + props.color}>
-      {props.children}
+    <div>
+      Radio inside {props.children}
     </div>
   );
-}
+}*/
 
-function WelcomeDialog() {
+const Car = () => <Radio><b>car</b></Radio>
+/*function Car() {
   return (
-    <FancyBorder color="blue">
-      <h1 className="Dialog-title">
-        Welcome
-      </h1>
-      <p className="Dialog-message">
-        Thank you for visiting our spacecraft!
-      </p>
-    </FancyBorder>
+    <Radio>
+      <b>car</b>
+    </Radio>
   );
-}
+}*/
+ReactDOM.render(<Car />, document.getElementById('root'));
 
-ReactDOM.render(<WelcomeDialog />, document.getElementById('root2'));
+const Div = (props) => <div className="{props.className}">{props.message}</div>;
+const CustomDiv = () => <Div className="test" message="hello world" />;
+const CustomDiv2 = () => <Div className="test2" message="other div" />;
+ReactDOM.render(<CustomDiv />, document.getElementById('root2'));
+ReactDOM.render(<CustomDiv2 />, document.getElementById('root3'));
 
 }
 </script>
