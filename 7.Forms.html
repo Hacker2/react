@@ -20,6 +20,8 @@ class NameForm extends React.Component {
   }
 
   handleSubmit(event) {
+    console.log(this.refs.title);
+    console.log(event.target);
     alert('A name was submitted: ' + this.state.value);
     event.preventDefault();
   }
@@ -29,7 +31,7 @@ class NameForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           Name:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
+          <input ref='title' type="text" value={this.state.value} onChange={this.handleChange} />
         </label>
         <input type="submit" value="Submit" />
       </form>
@@ -57,6 +59,9 @@ class NameForm2 extends React.Component {
   }
 
   handleSubmit(event) {
+    console.log(this.refs.title);
+    console.log(this.refs.message);
+    console.log(event.target);
     alert('A name was submitted: ' + this.state.val);
     event.preventDefault();
   }
@@ -66,8 +71,8 @@ class NameForm2 extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           Name:
-          <input name='val' type="text" value={this.state.val} onChange={this.handleChange} />
-          <textarea name='text' value={this.state.text} onChange={this.handleChange} />
+          <input ref="title" name='val' type="text" value={this.state.val} onChange={this.handleChange} />
+          <textarea ref="message" name='text' value={this.state.text} onChange={this.handleChange} />
         </label>
         <input type="submit" value="Submit" />
       </form>
